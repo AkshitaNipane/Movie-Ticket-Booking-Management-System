@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CINEBOOK - Movie Ticket Booking Management System</title>
+  
+  <!-- Remix Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Background Animated Decorative Glows -->
+  <div class="bg-glow"></div>
+  <div class="bg-glow-2"></div>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Global Confirmation Modal -->
+  <div id="confirm-modal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 420px;">
+      <div class="modal-header">
+        <h3 id="confirm-modal-title">Confirm Action</h3>
+        <button class="close-modal" onclick="ConfirmModal.close()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="confirm-modal-message" style="color:var(--text-secondary);">Are you sure you want to proceed?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-sm" onclick="ConfirmModal.close()">Cancel</button>
+        <button id="confirm-modal-btn" class="btn btn-danger btn-sm">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTHENTICATION SECTION (Login & Register Cards) -->
+  <div id="auth-section" class="auth-wrapper">
+    
+    <!-- LOGIN CARD -->
+    <div id="login-card" class="auth-card">
+      <div class="auth-header">
+        <div class="brand-logo">
+          <i class="ri-clapperboard-fill"></i> CINEBOOK
+        </div>
+        <p>Welcome back! Log in to manage your movie bookings.</p>
+      </div>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label for="login-email">Email Address</label>
+          <div class="input-icon-wrapper">
+            <i class="ri-mail-line left-icon"></i>
+            <input type="email" id="login-email" class="form-control" placeholder="admin@movie.com or john@example.com" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="login-password">Password (Optional)</label>
+          <div class="input-icon-wrapper">
+            <i class="ri-lock-2-line left-icon"></i>
+            <input type="password" id="login-password" class="form-control" placeholder="Optional / ••••••••">
+            <i class="ri-eye-off-line toggle-password"></i>
+          </div>
+        </div>
+
+        <div class="form-options">
+          <label class="checkbox-label">
+            <input type="checkbox" id="login-remember" checked>
+            <span>Remember Me</span>
+          </label>
+          <a href="#" class="forgot-link" onclick="App.showForgotPasswordModal(); return false;">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">
+          <i class="ri-login-circle-line"></i> Log In
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        Don't have an account? <a href="#" onclick="App.showAuthView('register'); return false;">Register Now</a>
+      </div>
+    </div>
+
+    <!-- REGISTER CARD -->
+    <div id="register-card" class="auth-card" style="display: none; max-width: 480px;">
+      <div class="auth-header">
+        <div class="brand-logo">
+          <i class="ri-clapperboard-fill"></i> CINEBOOK
+        </div>
+        <p>Create your free account to start booking movies.</p>
+      </div>
+
+      <form id="register-form">
+        <div class="form-group">
+          <label for="reg-name">Full Name</label>
+          <div class="input-icon-wrapper">
+            <i class="ri-user-line left-icon"></i>
+            <input type="text" id="reg-name" class="form-control" placeholder="John Doe" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="reg-email">Email Address</label>
+          <div class="input-icon-wrapper">
+            <i class="ri-mail-line left-icon"></i>
+            <input type="email" id="reg-email" class="form-control" placeholder="john@example.com" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="reg-phone">Phone Number</label>
+          <div class="input-icon-wrapper">
+            <i class="ri-phone-line left-icon"></i>
+            <input type="tel" id="reg-phone" class="form-control" placeholder="+1 (555) 000-0000" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="reg-password">Password (Min 8 characters)</label>
+          <div class="input-icon-wrapper">
+            <i class="ri-lock-2-line left-icon"></i>
+            <input type="password" id="reg-password" class="form-control" placeholder="••••••••" minlength="8" required>
+            <i class="ri-eye-off-line toggle-password"></i>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="reg-confirm-password">Confirm Password</label>
+          <div class="input-icon-wrapper">
+            <i class="ri-lock-check-line left-icon"></i>
+            <input type="password" id="reg-confirm-password" class="form-control" placeholder="••••••••" minlength="8" required>
+            <i class="ri-eye-off-line toggle-password"></i>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="reg-role">Account Role</label>
+          <div class="input-icon-wrapper">
+            <i class="ri-shield-user-line left-icon"></i>
+            <select id="reg-role" class="form-control" required>
+              <option value="Customer" selected>Customer</option>
+              <option value="Admin">Admin</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">
+          <i class="ri-user-add-line"></i> Create Account
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        Already have an account? <a href="#" onclick="App.showAuthView('login'); return false;">Log In</a>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- MAIN APPLICATION DASHBOARD LAYOUT -->
+  <div id="app-main-layout" id="app-container" style="display: none;">
+
+    <!-- SIDEBAR MENU -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-logo" style="font-size:1.4rem;">
+          <i class="ri-clapperboard-fill"></i> CINEBOOK
+        </div>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="menu-category">Main Navigation</li>
+        
+        <li class="menu-item active" id="nav-item-dashboard">
+          <a href="#" class="menu-link" onclick="App.showView('dashboard'); return false;">
+            <i class="ri-dashboard-3-line"></i> <span>Dashboard</span>
+          </a>
+        </li>
+
+        <li class="menu-item" id="nav-item-movies">
+          <a href="#" class="menu-link" onclick="App.showView('movies'); return false;">
+            <i class="ri-film-line"></i> <span>Movies</span>
+          </a>
+        </li>
+
+        <li class="menu-item" id="nav-item-bookings">
+          <a href="#" class="menu-link" onclick="App.showView('bookings'); return false;">
+            <i class="ri-ticket-2-line"></i> <span>Bookings</span>
+          </a>
+        </li>
+
+        <li class="menu-item" id="nav-item-users" id="sidebar-menu-users">
+          <a href="#" class="menu-link" onclick="App.showView('users'); return false;">
+            <i class="ri-group-line"></i> <span>Users (Admin)</span>
+          </a>
+        </li>
+
+        <li class="menu-category">Account</li>
+
+        <li class="menu-item" id="nav-item-profile">
+          <a href="#" class="menu-link" onclick="App.showView('profile'); return false;">
+            <i class="ri-user-settings-line"></i> <span>Profile</span>
+          </a>
+        </li>
+
+        <li class="menu-item" id="nav-item-settings">
+          <a href="#" class="menu-link" onclick="App.showView('settings'); return false;">
+            <i class="ri-settings-4-line"></i> <span>Settings</span>
+          </a>
+        </li>
+
+        <li class="menu-item" style="margin-top: auto;">
+          <a href="#" class="menu-link" style="color:var(--danger);" onclick="Auth.logout(); return false;">
+            <i class="ri-logout-box-r-line"></i> <span>Logout</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge">
+          <div class="avatar user-avatar-display">A</div>
+          <div class="user-info">
+            <div class="name user-name-display">User</div>
+            <span id="sidebar-role-badge" class="role-badge">Role</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="main-wrapper">
+      
+      <!-- TOP HEADER NAVBAR -->
+      <header class="top-header">
+        <div class="header-left">
+          <button class="mobile-toggle" onclick="App.toggleSidebar()">
+            <i class="ri-menu-line"></i>
+          </button>
+          <h4 style="color:var(--text-secondary); font-weight:600;">Movie Ticket Booking System</h4>
+        </div>
+
+        <div class="header-right">
+          <button class="icon-btn" onclick="App.toggleTheme()" title="Toggle Dark/Light Mode">
+            <i id="theme-toggle-icon" class="ri-sun-line"></i>
+          </button>
+
+          <div style="display:flex; align-items:center; gap:0.6rem; cursor:pointer;" onclick="App.showView('profile')">
+            <div class="avatar user-avatar-display" style="width:36px; height:36px; font-size:0.95rem;">U</div>
+            <span class="user-name-display" style="font-weight:600; font-size:0.9rem; display:none; @media(min-width:768px){display:inline;}">User</span>
+          </div>
+        </div>
+      </header>
+
+
+      <!-- DYNAMIC PAGE VIEWS -->
+      <main class="page-content">
+
+        <!-- 1. DASHBOARD VIEW -->
+        <section id="page-view-dashboard" class="view-page">
+          <div class="page-title-block">
+            <div>
+              <h2>System Dashboard</h2>
+              <p>Overview of movie statistics, bookings, and seat availability.</p>
+            </div>
+            <div style="display:flex; gap:0.5rem;">
+              <button class="btn btn-secondary btn-sm" onclick="App.showView('movies')"><i class="ri-film-line"></i> Browse Movies</button>
+              <button class="btn btn-primary btn-sm" onclick="App.showView('bookings')"><i class="ri-ticket-2-line"></i> View Bookings</button>
+            </div>
+          </div>
+
+          <!-- Top Metric Cards -->
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-details">
+                <h3 id="stat-total-movies">0</h3>
+                <span>Total Movies</span>
+              </div>
+              <div class="metric-icon movies"><i class="ri-film-line"></i></div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-details">
+                <h3 id="stat-total-bookings">0</h3>
+                <span>Total Bookings</span>
+              </div>
+              <div class="metric-icon bookings"><i class="ri-ticket-2-line"></i></div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-details">
+                <h3 id="stat-available-seats">0</h3>
+                <span>Available Seats</span>
+              </div>
+              <div class="metric-icon seats"><i class="ri-armchair-line"></i></div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-details">
+                <h3 id="stat-total-users">0</h3>
+                <span>System Users</span>
+              </div>
+              <div class="metric-icon users"><i class="ri-group-line"></i></div>
+            </div>
+          </div>
+
+          <!-- Quick Actions & Recent Bookings -->
+          <div class="content-card">
+            <div class="card-header-flex">
+              <h3>Recent Bookings</h3>
+              <button class="btn btn-secondary btn-sm" onclick="App.showView('bookings')">View All Bookings</button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Booking ID</th>
+                    <th>Customer</th>
+                    <th>Movie Name</th>
+                    <th>Seats</th>
+                    <th>Total Paid</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="recent-bookings-tbody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Upcoming Movies Section -->
+          <div class="content-card">
+            <div class="card-header-flex">
+              <h3>Currently Showing Movies</h3>
+              <button class="btn btn-secondary btn-sm" onclick="App.showView('movies')">Explore All</button>
+            </div>
+            <div id="dashboard-movies-grid" class="movies-grid">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </section>
+
+
+        <!-- 2. MOVIES MODULE VIEW -->
+        <section id="page-view-movies" class="view-page" style="display: none;">
+          <div class="page-title-block">
+            <div>
+              <h2>Movie Management</h2>
+              <p>Explore movie catalog, check showtimes, and book tickets.</p>
+            </div>
+            <button id="add-movie-trigger-btn" class="btn btn-primary" onclick="Movies.openAddModal()">
+              <i class="ri-add-line"></i> Add New Movie
+            </button>
+          </div>
+
+          <!-- Search & Filter Controls -->
+          <div class="content-card" style="padding: 1.25rem;">
+            <div style="display:flex; gap:1rem; flex-wrap:wrap; align-items:center;">
+              <div class="input-icon-wrapper" style="flex:1; min-width: 240px;">
+                <i class="ri-search-line left-icon"></i>
+                <input type="text" id="movie-search-input" class="form-control" placeholder="Search by title, genre..." oninput="Movies.fetchMovies()">
+              </div>
+
+              <select id="movie-genre-filter" class="form-control" style="width:auto; min-width:140px;" onchange="Movies.fetchMovies()">
+                <option value="All">All Genres</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Action">Action</option>
+                <option value="Drama">Drama</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Animation">Animation</option>
+              </select>
+
+              <select id="movie-sort-filter" class="form-control" style="width:auto; min-width:140px;" onchange="Movies.fetchMovies()">
+                <option value="date">Sort by Date</option>
+                <option value="name">Sort by Title</option>
+                <option value="price">Sort by Price</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Movies Cards Grid -->
+          <div id="movies-grid-container" class="movies-grid">
+            <!-- Rendered dynamically -->
+          </div>
+        </section>
+
+
+        <!-- 3. BOOKINGS MODULE VIEW -->
+        <section id="page-view-bookings" class="view-page" style="display: none;">
+          <div class="page-title-block">
+            <div>
+              <h2>Booking Records</h2>
+              <p>Manage customer ticket orders, cancellations, and export PDFs.</p>
+            </div>
+            <button class="btn btn-secondary" onclick="Bookings.exportAllPDF()">
+              <i class="ri-file-pdf-line"></i> Export Bookings (PDF)
+            </button>
+          </div>
+
+          <div class="content-card">
+            <div class="card-header-flex">
+              <div style="display:flex; gap:1rem; flex:1; max-width: 500px;">
+                <div class="input-icon-wrapper" style="flex:1;">
+                  <i class="ri-search-line left-icon"></i>
+                  <input type="text" id="booking-search-input" class="form-control" placeholder="Search booking ID, movie or customer..." oninput="Bookings.fetchBookings()">
+                </div>
+                <select id="booking-status-filter" class="form-control" style="width:auto;" onchange="Bookings.fetchBookings()">
+                  <option value="All">All Statuses</option>
+                  <option value="Confirmed">Confirmed</option>
+                  <option value="Cancelled">Cancelled</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Booking ID</th>
+                    <th>Customer Name</th>
+                    <th>Movie</th>
+                    <th>Show Time</th>
+                    <th>Seats</th>
+                    <th>Tickets</th>
+                    <th>Total Price</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="bookings-tbody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- 4. USERS MODULE VIEW (ADMIN ONLY) -->
+        <section id="page-view-users" class="view-page" style="display: none;">
+          <div class="page-title-block">
+            <div>
+              <h2>User Management</h2>
+              <p>Manage system users, assigned security roles, and permissions.</p>
+            </div>
+            <button class="btn btn-primary" onclick="Users.openAddModal()">
+              <i class="ri-user-add-line"></i> Add New User
+            </button>
+          </div>
+
+          <div class="content-card">
+            <div class="card-header-flex">
+              <div class="input-icon-wrapper" style="max-width: 360px; width:100%;">
+                <i class="ri-search-line left-icon"></i>
+                <input type="text" id="user-search-input" class="form-control" placeholder="Search by name, email, phone..." oninput="Users.fetchUsers()">
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>User ID</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Role</th>
+                    <th>Joined Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="users-tbody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- 5. PROFILE VIEW -->
+        <section id="page-view-profile" class="view-page" style="display: none;">
+          <div class="page-title-block">
+            <div>
+              <h2>User Profile</h2>
+              <p>View and update your personal details and account password.</p>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+            <!-- Profile Info Card -->
+            <div class="content-card">
+              <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.5rem;">
+                <div class="avatar" id="profile-avatar-initial" style="width:60px; height:60px; font-size:1.6rem;">U</div>
+                <div>
+                  <h3 id="profile-name-display">Account Profile</h3>
+                  <span id="profile-role-display" class="role-badge">Role</span>
+                </div>
+              </div>
+
+              <form onsubmit="Profile.updateProfile(event)">
+                <div class="form-group">
+                  <label>Full Name</label>
+                  <input type="text" id="profile-name-input" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label>Email Address</label>
+                  <input type="email" id="profile-email-input" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label>Phone Number</label>
+                  <input type="tel" id="profile-phone-input" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top:1rem;">
+                  <i class="ri-save-line"></i> Save Profile Details
+                </button>
+              </form>
+            </div>
+
+            <!-- Password Change Card -->
+            <div class="content-card">
+              <h3>Change Password</h3>
+              <p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:1.5rem;">Update your account password for enhanced security.</p>
+
+              <form id="change-password-form" onsubmit="Profile.changePassword(event)">
+                <div class="form-group">
+                  <label>Current Password</label>
+                  <input type="password" id="pass-current-input" class="form-control" placeholder="••••••••" required>
+                </div>
+                <div class="form-group">
+                  <label>New Password (Min 8 characters)</label>
+                  <input type="password" id="pass-new-input" class="form-control" placeholder="••••••••" minlength="8" required>
+                </div>
+                <div class="form-group">
+                  <label>Confirm New Password</label>
+                  <input type="password" id="pass-confirm-input" class="form-control" placeholder="••••••••" minlength="8" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top:1rem;">
+                  <i class="ri-lock-password-line"></i> Update Password
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- 6. SETTINGS VIEW -->
+        <section id="page-view-settings" class="view-page" style="display: none;">
+          <div class="page-title-block">
+            <div>
+              <h2>Application Settings</h2>
+              <p>Configure system preferences and visual theme.</p>
+            </div>
+          </div>
+
+          <div class="content-card" style="max-width: 600px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; padding: 1rem 0; border-bottom: 1px solid var(--border-color);">
+              <div>
+                <strong>Theme Mode</strong>
+                <p style="font-size:0.85rem; color:var(--text-secondary);">Switch between Dark and Light background styles</p>
+              </div>
+              <button class="btn btn-secondary btn-sm" onclick="App.toggleTheme()">
+                <i class="ri-sun-line"></i> Toggle Theme
+              </button>
+            </div>
+
+            <div style="display:flex; align-items:center; justify-content:space-between; padding: 1rem 0;">
+              <div>
+                <strong>System Notifications</strong>
+                <p style="font-size:0.85rem; color:var(--text-secondary);">Enable toast alert notifications for user actions</p>
+              </div>
+              <label class="checkbox-label">
+                <input type="checkbox" checked disabled>
+                <span>Enabled</span>
+              </label>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+
+  <!-- MODALS -->
+
+  <!-- Add/Edit Movie Modal -->
+  <div id="movie-modal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="movie-modal-title">Add New Movie</h3>
+        <button class="close-modal" onclick="Movies.closeModal()">&times;</button>
+      </div>
+      <form id="movie-form" onsubmit="Movies.handleFormSubmit(event)">
+        <div class="modal-body">
+          <input type="hidden" id="movie-id-input">
+          
+          <div class="form-group">
+            <label>Movie Name</label>
+            <input type="text" id="movie-name-input" class="form-control" placeholder="e.g. Interstellar" required>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+            <div class="form-group">
+              <label>Genre</label>
+              <input type="text" id="movie-genre-input" class="form-control" placeholder="Sci-Fi / Action" required>
+            </div>
+            <div class="form-group">
+              <label>Language</label>
+              <input type="text" id="movie-language-input" class="form-control" placeholder="English" required>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:1rem;">
+            <div class="form-group">
+              <label>Duration</label>
+              <input type="text" id="movie-duration-input" class="form-control" placeholder="150 min" required>
+            </div>
+            <div class="form-group">
+              <label>Show Date</label>
+              <input type="date" id="movie-date-input" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Show Time</label>
+              <input type="time" id="movie-time-input" class="form-control" required>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:1rem;">
+            <div class="form-group">
+              <label>Screen Number</label>
+              <input type="text" id="movie-screen-input" class="form-control" placeholder="Screen 1 (IMAX)" required>
+            </div>
+            <div class="form-group">
+              <label>Available Seats</label>
+              <input type="number" id="movie-seats-input" class="form-control" placeholder="100" min="1" required>
+            </div>
+            <div class="form-group">
+              <label>Ticket Price (₹)</label>
+              <input type="number" step="0.5" id="movie-price-input" class="form-control" placeholder="250.00" min="1" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Poster Image URL</label>
+            <input type="url" id="movie-poster-input" class="form-control" placeholder="https://images.unsplash.com/..." required>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="Movies.closeModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="ri-save-line"></i> Save Movie</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- Interactive Seat Booking Modal -->
+  <div id="seat-booking-modal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 680px;">
+      <div class="modal-header">
+        <div>
+          <h3 id="booking-movie-title">Movie Booking</h3>
+          <p id="booking-show-meta" style="font-size:0.85rem; color:var(--text-secondary);"></p>
+        </div>
+        <button class="close-modal" onclick="Movies.closeBookingModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="screen-indicator">Screen Projection Area</div>
+
+        <!-- Seat Matrix Grid -->
+        <div id="seat-matrix-container" class="seats-grid">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <div class="seat-legend">
+          <div class="legend-item">
+            <div class="legend-box" style="background: rgba(255,255,255,0.08); border: 1px solid var(--border-color);"></div>
+            <span>Available</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-box" style="background: var(--accent-gradient);"></div>
+            <span>Selected</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-box" style="background: rgba(255,255,255,0.03);"></div>
+            <span>Occupied</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 1.5rem; background: rgba(0,0,0,0.2); padding:1rem; border-radius:var(--radius-md); display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <div>Selected Seats: <strong id="selected-seats-list" style="color:var(--accent-primary);">None</strong></div>
+            <div style="font-size:0.85rem; color:var(--text-secondary);">Tickets Count: <span id="selected-tickets-count">0</span></div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:0.85rem; color:var(--text-secondary);">Total Amount</div>
+            <div id="booking-total-price" style="font-size:1.6rem; font-weight:800; color:var(--success);">₹0.00</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="Movies.closeBookingModal()">Cancel</button>
+        <button id="submit-booking-btn" class="btn btn-primary" onclick="Movies.openPaymentModal()" disabled>
+          <i class="ri-secure-payment-line"></i> Proceed to Payment (<span id="btn-total-amount">₹0.00</span>)
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Secure Payment Options Modal -->
+  <div id="payment-modal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 620px;">
+      <div class="modal-header">
+        <div>
+          <h3><i class="ri-secure-payment-fill" style="color:var(--accent-primary);"></i> Payment Options</h3>
+          <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:2px;">Complete your transaction to confirm ticket booking</p>
+        </div>
+        <button class="close-modal" onclick="Movies.closePaymentModal()">&times;</button>
+      </div>
+
+      <div class="modal-body" style="padding-top:1.2rem;">
+        <!-- Order Summary Card -->
+        <div class="payment-order-summary">
+          <div class="order-summary-left">
+            <h4 id="pay-summary-movie-title" style="font-size:1.15rem; color:var(--text-primary);">Movie Title</h4>
+            <div id="pay-summary-meta" style="font-size:0.82rem; color:var(--text-secondary); margin-top:3px;">Screen • Date & Time</div>
+            <div style="font-size:0.85rem; margin-top:5px;">
+              Seats: <strong id="pay-summary-seats" style="color:var(--accent-primary);">A1, A2</strong> 
+              (<span id="pay-summary-count">2</span> tickets)
+            </div>
+          </div>
+          <div class="order-summary-right">
+            <span style="font-size:0.75rem; color:var(--text-secondary); text-transform:uppercase; font-weight:600; letter-spacing:0.5px;">Payable Amount</span>
+            <div id="pay-summary-amount" style="font-size:1.6rem; font-weight:800; color:var(--success);">₹0.00</div>
+          </div>
+        </div>
+
+        <!-- Payment Method Tabs -->
+        <div class="pay-method-tabs">
+          <button type="button" class="pay-tab-btn active" id="tab-btn-upi" onclick="Movies.switchPaymentMethod('upi')">
+            <i class="ri-qr-code-line"></i>
+            <span>UPI / QR</span>
+          </button>
+          <button type="button" class="pay-tab-btn" id="tab-btn-card" onclick="Movies.switchPaymentMethod('card')">
+            <i class="ri-bank-card-line"></i>
+            <span>Debit / Card</span>
+          </button>
+          <button type="button" class="pay-tab-btn" id="tab-btn-cinemax" onclick="Movies.switchPaymentMethod('cinemax')">
+            <i class="ri-mail-check-line"></i>
+            <span>Email Pay</span>
+          </button>
+          <button type="button" class="pay-tab-btn" id="tab-btn-netbanking" onclick="Movies.switchPaymentMethod('netbanking')">
+            <i class="ri-bank-line"></i>
+            <span>Net Banking</span>
+          </button>
+        </div>
+
+        <!-- Tab 1: UPI / QR Code -->
+        <div id="pay-panel-upi" class="pay-panel active">
+          <div class="form-group" style="margin-bottom:0.9rem;">
+            <label>Enter UPI ID (Google Pay / PhonePe / Paytm / BHIM)</label>
+            <div class="input-icon-wrapper">
+              <i class="ri-smartphone-line left-icon"></i>
+              <input type="text" id="pay-upi-id" class="form-control" placeholder="user@okhdfcbank / 9876543210@paytm" value="user@okhdfcbank">
+            </div>
+          </div>
+
+          <div class="upi-apps-row">
+            <div class="upi-app-badge active" onclick="Movies.selectUpiApp('Google Pay')"><i class="ri-google-fill"></i> GPay</div>
+            <div class="upi-app-badge" onclick="Movies.selectUpiApp('PhonePe')"><i class="ri-wallet-3-line"></i> PhonePe</div>
+            <div class="upi-app-badge" onclick="Movies.selectUpiApp('Paytm')"><i class="ri-flashlight-line"></i> Paytm</div>
+            <div class="upi-app-badge" onclick="Movies.selectUpiApp('BHIM')"><i class="ri-qr-code-fill"></i> BHIM</div>
+          </div>
+
+          <div class="qr-preview-box" id="qr-preview-box" onclick="Movies.toggleQrCode()" style="cursor:pointer;" title="Click to view QR Code">
+            <div class="qr-code-mock">
+              <i class="ri-qr-code-line" style="font-size:3.2rem; color:var(--accent-primary);"></i>
+            </div>
+            <div style="flex:1;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <strong style="color:var(--text-primary); font-size:0.95rem;">Instant QR Pay</strong>
+                <span id="qr-toggle-badge" class="badge badge-success" style="font-size:0.75rem;"><i class="ri-qr-scan-line"></i> Click to Show QR</span>
+              </div>
+              <span style="font-size:0.8rem; color:var(--text-secondary);">Click here to generate &amp; scan UPI QR Code.</span>
+            </div>
+          </div>
+
+          <!-- Dynamic QR Code Container (shown when Instant QR clicked) -->
+          <div id="qr-code-display-area" style="display:none; margin-top:1rem; text-align:center; background:rgba(0,0,0,0.3); border:2px dashed var(--accent-primary); border-radius:var(--radius-md); padding:1.25rem;">
+            <div style="font-size:0.9rem; font-weight:700; color:var(--text-primary); margin-bottom:0.75rem; display:flex; align-items:center; justify-content:center; gap:0.4rem;">
+              <i class="ri-qr-code-line" style="color:var(--accent-primary); font-size:1.2rem;"></i> Scan &amp; Pay ₹<span id="qr-display-amount">0.00</span>
+            </div>
+
+            <div style="display:inline-block; padding:12px; background:#ffffff; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.4);">
+              <img id="qr-image-element" src="" alt="UPI QR Code" style="width:170px; height:170px; display:block; object-fit:contain;" onerror="Movies.handleQrFallback(this)">
+            </div>
+
+            <div style="margin-top:0.75rem; font-size:0.8rem; color:var(--text-secondary);">
+              Scan using <strong>GPay</strong>, <strong>PhonePe</strong>, <strong>Paytm</strong> or any UPI App
+            </div>
+
+            <button type="button" class="btn btn-primary btn-sm" onclick="Movies.processPaymentAndBook()" style="margin-top:0.9rem; width:100%; justify-content:center; font-weight:700; padding:0.65rem;">
+              <i class="ri-checkbox-circle-fill"></i> Confirm QR Payment (₹<span id="qr-confirm-amount">0.00</span>)
+            </button>
+          </div>
+        </div>
+
+        <!-- Tab 2: Credit / Debit Card -->
+        <div id="pay-panel-card" class="pay-panel">
+          <div class="form-group" style="margin-bottom:0.85rem;">
+            <label>Card Number</label>
+            <div class="input-icon-wrapper">
+              <i class="ri-bank-card-2-line left-icon"></i>
+              <input type="text" id="pay-card-number" class="form-control" placeholder="•••• •••• •••• ••••" maxlength="19" value="4532 8920 1142 8892">
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0.9rem; margin-bottom:0.85rem;">
+            <div class="form-group">
+              <label>Expiry Date</label>
+              <input type="text" id="pay-card-expiry" class="form-control" placeholder="MM/YY" maxlength="5" value="12/28">
+            </div>
+            <div class="form-group">
+              <label>CVV / CVC</label>
+              <input type="password" id="pay-card-cvv" class="form-control" placeholder="•••" maxlength="4" value="789">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Cardholder Name</label>
+            <input type="text" id="pay-card-name" class="form-control" placeholder="Full name on card" value="Cardholder">
+          </div>
+        </div>
+
+        <!-- Tab 3: Email ID Payment -->
+        <div id="pay-panel-cinemax" class="pay-panel">
+          <div class="cinemax-pay-box">
+            <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem;">
+              <div class="avatar" style="width:40px; height:40px; background:var(--accent-gradient); font-size:1.1rem; color:#fff; display:flex; align-items:center; justify-content:center; border-radius:var(--radius-full);">
+                <i class="ri-mail-check-fill"></i>
+              </div>
+              <div>
+                <div style="font-size:0.75rem; color:var(--text-secondary); text-transform:uppercase; font-weight:600;">Account / Email Pay</div>
+                <strong id="pay-cinemax-email" style="font-size:0.95rem; color:var(--text-primary);">user@email.com</strong>
+              </div>
+            </div>
+            <p style="font-size:0.83rem; color:var(--text-secondary); margin-bottom:1rem; line-height:1.4;">
+              Enter or confirm your Email ID to instantly complete payment. No password needed!
+            </p>
+            <div class="form-group">
+              <label>Email Address</label>
+              <div class="input-icon-wrapper">
+                <i class="ri-mail-line left-icon"></i>
+                <input type="email" id="pay-cinemax-email-input" class="form-control" placeholder="user@gmail.com">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: Net Banking -->
+        <div id="pay-panel-netbanking" class="pay-panel">
+          <div class="form-group">
+            <label>Select Your Bank</label>
+            <select id="pay-bank-select" class="form-control">
+              <option value="HDFC Bank">HDFC Bank</option>
+              <option value="State Bank of India">State Bank of India (SBI)</option>
+              <option value="ICICI Bank">ICICI Bank</option>
+              <option value="Axis Bank">Axis Bank</option>
+              <option value="Kotak Mahindra Bank">Kotak Mahindra Bank</option>
+              <option value="Punjab National Bank">Punjab National Bank</option>
+            </select>
+          </div>
+          <div style="margin-top:1rem; background:rgba(255,255,255,0.03); padding:0.85rem; border-radius:var(--radius-sm); border:1px solid var(--border-color); font-size:0.82rem; color:var(--text-secondary);">
+            <i class="ri-shield-check-line" style="color:var(--success);"></i> 256-Bit Bank Grade Encryption. You will be routed safely to confirm.
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="Movies.backToSeatSelection()">
+          <i class="ri-arrow-left-line"></i> Change Seats
+        </button>
+        <button type="button" id="pay-now-btn" class="btn btn-primary" onclick="Movies.processPaymentAndBook()">
+          <i class="ri-lock-2-line"></i> Pay <span id="pay-btn-amount">₹0.00</span> & Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Booking Success & Instant Ticket Download Modal -->
+  <div id="booking-success-modal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 540px; text-align:center;">
+      <div class="modal-body" style="padding: 2.25rem 2rem 1.75rem;">
+        <div class="success-animated-icon">
+          <i class="ri-checkbox-circle-fill"></i>
+        </div>
+        <h2 style="font-size:1.6rem; margin-bottom:0.35rem; color:var(--text-primary);">Booking Confirmed! 🎉</h2>
+        <p style="color:var(--text-secondary); font-size:0.9rem; margin-bottom:1.4rem;">Payment completed successfully and your ticket is ready!</p>
+
+        <!-- Ticket Summary Card -->
+        <div class="ticket-preview-box">
+          <div class="ticket-preview-header">
+            <div>
+              <span class="badge badge-success" style="font-size:0.75rem;"><i class="ri-check-line"></i> Paid & Confirmed</span>
+              <h4 id="success-movie-name" style="margin-top:0.4rem; font-size:1.15rem; color:var(--text-primary); text-align:left;">Movie Title</h4>
+            </div>
+            <div style="text-align:right;">
+              <span style="font-size:0.75rem; color:var(--text-muted); display:block;">Booking ID</span>
+              <strong id="success-booking-id" style="color:var(--accent-primary); font-size:1rem;">#bk_000000</strong>
+            </div>
+          </div>
+
+          <div class="ticket-preview-grid">
+            <div class="ticket-info-item">
+              <small>Show Time</small>
+              <span id="success-showtime">Show Time</span>
+            </div>
+            <div class="ticket-info-item">
+              <small>Screen</small>
+              <span id="success-screen">Screen 1</span>
+            </div>
+            <div class="ticket-info-item">
+              <small>Seats Booked</small>
+              <strong id="success-seats" style="color:var(--accent-primary);">A1, A2</strong>
+            </div>
+            <div class="ticket-info-item">
+              <small>Ticket Count</small>
+              <span id="success-count">2 Tickets</span>
+            </div>
+            <div class="ticket-info-item">
+              <small>Payment Mode</small>
+              <span id="success-pay-method">UPI / Online</span>
+            </div>
+            <div class="ticket-info-item">
+              <small>Amount Paid</small>
+              <strong id="success-amount" style="color:var(--success); font-size:1.05rem;">₹500.00</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div style="display:flex; flex-direction:column; gap:0.75rem; margin-top:1.5rem;">
+          <button type="button" class="btn btn-primary" onclick="Movies.downloadCurrentTicket()" style="width:100%; justify-content:center; font-size:1.05rem; padding:0.9rem; font-weight:700;">
+            <i class="ri-file-pdf-2-fill" style="font-size:1.3rem;"></i> Download Ticket (Save as PDF)
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="Movies.saveTicketFile()" style="width:100%; justify-content:center; font-size:0.9rem; padding:0.65rem;">
+            <i class="ri-download-2-line"></i> Download Ticket File (.html)
+          </button>
+          <div style="display:flex; gap:0.75rem;">
+            <button type="button" class="btn btn-secondary" onclick="Movies.viewInBookings()" style="flex:1; justify-content:center;">
+              <i class="ri-ticket-2-line"></i> View in Bookings
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="Movies.closeSuccessModal()" style="flex:1; justify-content:center;">
+              Done
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Add/Edit User Modal (Admin Only) -->
+  <div id="user-modal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 id="user-modal-title">Add New User</h3>
+        <button class="close-modal" onclick="Users.closeModal()">&times;</button>
+      </div>
+      <form id="user-form" onsubmit="Users.handleFormSubmit(event)">
+        <div class="modal-body">
+          <input type="hidden" id="user-id-input">
+
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="user-name-input" class="form-control" placeholder="John Doe" required>
+          </div>
+
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="user-email-input" class="form-control" placeholder="john@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" id="user-phone-input" class="form-control" placeholder="+1 (555) 000-0000" required>
+          </div>
+
+          <div class="form-group" id="user-password-group">
+            <label>Password</label>
+            <input type="password" id="user-password-input" class="form-control" placeholder="••••••••" minlength="8">
+          </div>
+
+          <div class="form-group">
+            <label>Assign Role</label>
+            <select id="user-role-select" class="form-control" required>
+              <option value="Customer">Customer</option>
+              <option value="Admin">Admin</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="Users.closeModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="ri-user-add-line"></i> Save User</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- Client Scripts -->
+  <script src="js/toast.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/movies.js"></script>
+  <script src="js/bookings.js"></script>
+  <script src="js/users.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

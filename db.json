@@ -1,0 +1,492 @@
+{
+  "users": [
+    {
+      "id": "usr_admin01",
+      "name": "AKSHITA NIPANE",
+      "email": "akshitanipane755@gmail.com",
+      "phone": "9371613488",
+      "password": "$2a$10$oS/RUI7/cu3UdeXokojo0.TvBc5LF2s6SzUw65QQef1Lh5r.hVB1S",
+      "role": "Admin",
+      "createdAt": "2026-01-10T08:00:00.000Z"
+    },
+    {
+      "id": "usr_cust01",
+      "name": "Akshad Jaiswal",
+      "email": "jaiswalakshad6@gmail.com",
+      "phone": "8408986643",
+      "password": "$2a$10$RKqlqqJO4Vw4b6LH7URsnuqksmMynefQb7lxdqCd6xc.Qo4qyLyzG",
+      "role": "Customer",
+      "createdAt": "2026-01-15T10:30:00.000Z"
+    },
+    {
+      "id": "usr_cust02",
+      "name": "Dolly Sharma",
+      "email": "dollysharma@gmail.com",
+      "phone": "9091238765",
+      "password": "$2a$10$RKqlqqJO4Vw4b6LH7URsnuqksmMynefQb7lxdqCd6xc.Qo4qyLyzG",
+      "role": "Customer",
+      "createdAt": "2026-01-18T14:20:00.000Z"
+    },
+    {
+      "id": "usr_cust03",
+      "name": "Khushi jain",
+      "email": "khushiijain@gmail.com",
+      "phone": "+1 (555) 456-7890",
+      "password": "$2a$10$RKqlqqJO4Vw4b6LH7URsnuqksmMynefQb7lxdqCd6xc.Qo4qyLyzG",
+      "role": "Customer",
+      "createdAt": "2026-01-20T11:15:00.000Z"
+    },
+    {
+      "id": "usr_cust04",
+      "name": "Sarah Williams",
+      "email": "sarah@example.com",
+      "phone": "+1 (555) 567-8901",
+      "password": "$2a$10$RKqlqqJO4Vw4b6LH7URsnuqksmMynefQb7lxdqCd6xc.Qo4qyLyzG",
+      "role": "Customer",
+      "createdAt": "2026-01-22T16:45:00.000Z"
+    },
+    {
+      "id": "usr_1785577417215",
+      "name": "AKSHITA NIPANE",
+      "email": "akshitanipane26@gmail.com",
+      "phone": "+919371613488",
+      "password": "$2a$10$T2ZfO./9LExDQLevPPf3W.nizELtil/4k4LWzTnyssb/egQ6PMZ/u",
+      "role": "Admin",
+      "createdAt": "2026-08-01T09:43:37.215Z"
+    },
+    {
+      "id": "usr_1791817350109",
+      "name": "Newuser999",
+      "email": "newuser999@gmail.com",
+      "phone": "9892929666",
+      "password": "$2a$10$jsCG0D256gATFHgOkvYAEOuzM08NV8IQe0560hwBbNql4CUXPZSfi",
+      "role": "Customer",
+      "createdAt": "2026-10-12T15:02:30.109Z"
+    }
+  ],
+  "movies": [
+    {
+      "id": "mov_001",
+      "name": "Taare Zameen Par",
+      "genre": "Drama / Family",
+      "language": "Hindi",
+      "duration": "165 min",
+      "showDate": "2026-08-05",
+      "showTime": "18:30",
+      "screenNumber": "Screen 1",
+      "availableSeats": 105,
+      "ticketPrice": 250,
+      "posterUrl": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": "mov_002",
+      "name": "3 Idiots",
+      "genre": "Comedy / Drama",
+      "language": "Hindi",
+      "duration": "170 min",
+      "showDate": "2026-08-05",
+      "showTime": "21:00",
+      "screenNumber": "Screen 2 (PVR)",
+      "availableSeats": 85,
+      "ticketPrice": 300,
+      "posterUrl": "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": "mov_003",
+      "name": "Dangal",
+      "genre": "Action / Biography",
+      "language": "Hindi",
+      "duration": "161 min",
+      "showDate": "2026-08-06",
+      "showTime": "19:00",
+      "screenNumber": "Screen 1 (IMAX)",
+      "availableSeats": 95,
+      "ticketPrice": 320,
+      "posterUrl": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": "mov_004",
+      "name": "PK",
+      "genre": "Comedy / Sci-Fi",
+      "language": "Hindi",
+      "duration": "153 min",
+      "showDate": "2026-08-06",
+      "showTime": "17:00",
+      "screenNumber": "Screen 3",
+      "availableSeats": 140,
+      "ticketPrice": 280,
+      "posterUrl": "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": "mov_005",
+      "name": "Chhichhore",
+      "genre": "Comedy / Drama",
+      "language": "Hindi",
+      "duration": "143 min",
+      "showDate": "2026-08-07",
+      "showTime": "20:15",
+      "screenNumber": "Screen 1",
+      "availableSeats": 58,
+      "ticketPrice": 260,
+      "posterUrl": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": "mov_006",
+      "name": "Zindagi Na Milegi Dobara",
+      "genre": "Adventure / Drama",
+      "language": "Hindi",
+      "duration": "155 min",
+      "showDate": "2026-08-07",
+      "showTime": "18:00",
+      "screenNumber": "Screen 2",
+      "availableSeats": 105,
+      "ticketPrice": 350,
+      "posterUrl": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": "mov_007",
+      "name": "Bajrangi Bhaijaan",
+      "genre": "Action / Drama",
+      "language": "Hindi",
+      "duration": "159 min",
+      "showDate": "2026-08-08",
+      "showTime": "14:30",
+      "screenNumber": "Screen 4",
+      "availableSeats": 78,
+      "ticketPrice": 300,
+      "posterUrl": "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": "mov_008",
+      "name": "Drishyam 2",
+      "genre": "Crime / Thriller",
+      "language": "Hindi",
+      "duration": "140 min",
+      "showDate": "2026-08-08",
+      "showTime": "22:00",
+      "screenNumber": "Screen 3",
+      "availableSeats": 90,
+      "ticketPrice": 290,
+      "posterUrl": "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": "mov_009",
+      "name": "Shershaah",
+      "genre": "Action / Biography",
+      "language": "Hindi",
+      "duration": "135 min",
+      "showDate": "2026-08-09",
+      "showTime": "19:30",
+      "screenNumber": "Screen 2",
+      "availableSeats": 110,
+      "ticketPrice": 270,
+      "posterUrl": "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": "mov_010",
+      "name": "Bhool Bhulaiyaa 2",
+      "genre": "Comedy / Horror",
+      "language": "Hindi",
+      "duration": "145 min",
+      "showDate": "2026-08-09",
+      "showTime": "16:00",
+      "screenNumber": "Screen 1 (IMAX)",
+      "availableSeats": 126,
+      "ticketPrice": 280,
+      "posterUrl": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=600&q=80"
+    }
+  ],
+  "bookings": [
+    {
+      "id": "bk_593484",
+      "userId": "usr_cust01",
+      "customerName": "Akshad Jaiswal",
+      "customerEmail": "jaiswalakshad6@gmail.com",
+      "movieId": "mov_001",
+      "movieName": "Taare Zameen Par",
+      "screenNumber": "Screen 1",
+      "showTime": "2026-08-05 18:30",
+      "seats": [
+        "E5"
+      ],
+      "ticketCount": 1,
+      "totalAmount": 250,
+      "paymentMethod": "UPI (1234567890)",
+      "paymentStatus": "Paid",
+      "transactionId": "TXN_16593484",
+      "bookingDate": "2026-10-12T14:49:53.484Z",
+      "status": "Confirmed"
+    },
+    {
+      "id": "bk_593479",
+      "userId": "usr_cust01",
+      "customerName": "Akshad Jaiswal",
+      "customerEmail": "jaiswalakshad6@gmail.com",
+      "movieId": "mov_001",
+      "movieName": "Taare Zameen Par",
+      "screenNumber": "Screen 1",
+      "showTime": "2026-08-05 18:30",
+      "seats": [
+        "E4"
+      ],
+      "ticketCount": 1,
+      "totalAmount": 250,
+      "paymentMethod": "UPI (9892929666@paytm)",
+      "paymentStatus": "Paid",
+      "transactionId": "TXN_16593479",
+      "bookingDate": "2026-10-12T14:49:53.479Z",
+      "status": "Confirmed"
+    },
+    {
+      "id": "bk_931594",
+      "userId": "usr_cust01",
+      "customerName": "Akshad Jaiswal",
+      "customerEmail": "jaiswalakshad6@gmail.com",
+      "movieId": "mov_001",
+      "movieName": "Taare Zameen Par",
+      "screenNumber": "Screen 1",
+      "showTime": "2026-08-05 18:30",
+      "seats": [
+        "E3"
+      ],
+      "ticketCount": 1,
+      "totalAmount": 250,
+      "paymentMethod": "Cinemax Account",
+      "paymentStatus": "Paid",
+      "transactionId": "TXN_15931594",
+      "bookingDate": "2026-10-12T14:38:51.594Z",
+      "status": "Confirmed"
+    },
+    {
+      "id": "bk_931460",
+      "userId": "usr_cust01",
+      "customerName": "Akshad Jaiswal",
+      "customerEmail": "jaiswalakshad6@gmail.com",
+      "movieId": "mov_001",
+      "movieName": "Taare Zameen Par",
+      "screenNumber": "Screen 1",
+      "showTime": "2026-08-05 18:30",
+      "seats": [
+        "E1",
+        "E2"
+      ],
+      "ticketCount": 2,
+      "totalAmount": 500,
+      "paymentMethod": "UPI / GPay",
+      "paymentStatus": "Paid",
+      "transactionId": "TXN_15931460",
+      "bookingDate": "2026-10-12T14:38:51.460Z",
+      "status": "Confirmed"
+    },
+    {
+      "id": "bk_606145",
+      "userId": "usr_cust01",
+      "customerName": "Akshad Jaiswal",
+      "movieId": "mov_001",
+      "movieName": "Taare Zameen Par",
+      "showTime": "2026-08-05 18:30",
+      "seats": [
+        "A1",
+        "A2"
+      ],
+      "ticketCount": 2,
+      "totalAmount": 500,
+      "bookingDate": "2026-10-12T14:33:26.145Z",
+      "status": "Confirmed"
+    },
+    {
+      "id": "bk_160937",
+      "userId": "usr_1785577417215",
+      "customerName": "AKSHITA NIPANE",
+      "movieId": "mov_010",
+      "movieName": "Bhool Bhulaiyaa 2",
+      "showTime": "2026-08-09 16:00",
+      "seats": [
+        "A6",
+        "A5",
+        "A7",
+        "A8"
+      ],
+      "ticketCount": 4,
+      "totalAmount": 1120,
+      "bookingDate": "2026-08-01T17:09:20.937Z",
+      "status": "Confirmed"
+    },
+    {
+      "id": "bk_867981",
+      "userId": "usr_1785577417215",
+      "customerName": "AKSHITA NIPANE",
+      "movieId": "mov_005",
+      "movieName": "Chhichhore",
+      "showTime": "2026-08-07 20:15",
+      "seats": [
+        "A1",
+        "A2"
+      ],
+      "ticketCount": 2,
+      "totalAmount": 520,
+      "bookingDate": "2026-08-01T09:51:07.981Z",
+      "status": "Confirmed"
+    },
+    {
+      "id": "bk_001",
+      "userId": "usr_cust01",
+      "customerName": "Akshad Jaiswal",
+      "movieId": "mov_001",
+      "movieName": "Taare Zameen Par",
+      "showTime": "2026-08-05 18:30",
+      "seats": [
+        "A4",
+        "A5"
+      ],
+      "ticketCount": 2,
+      "totalAmount": 500,
+      "bookingDate": "2026-07-28T14:10:00.000Z",
+      "status": "Confirmed"
+    },
+    {
+      "id": "bk_002",
+      "userId": "usr_cust02",
+      "customerName": "Dolly Sharma",
+      "movieId": "mov_002",
+      "movieName": "3 Idiots",
+      "showTime": "2026-08-05 21:00",
+      "seats": [
+        "B10",
+        "B11",
+        "B12"
+      ],
+      "ticketCount": 3,
+      "totalAmount": 900,
+      "bookingDate": "2026-07-29T09:45:00.000Z",
+      "status": "Confirmed"
+    },
+    {
+      "id": "bk_003",
+      "userId": "usr_cust03",
+      "customerName": "Khushi jain",
+      "movieId": "mov_003",
+      "movieName": "Dangal",
+      "showTime": "2026-08-06 19:00",
+      "seats": [
+        "C7"
+      ],
+      "ticketCount": 1,
+      "totalAmount": 320,
+      "bookingDate": "2026-07-30T16:20:00.000Z",
+      "status": "Confirmed"
+    },
+    {
+      "id": "bk_004",
+      "userId": "usr_cust04",
+      "customerName": "Sarah Williams",
+      "movieId": "mov_004",
+      "movieName": "PK",
+      "showTime": "2026-08-06 17:00",
+      "seats": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "ticketCount": 4,
+      "totalAmount": 1120,
+      "bookingDate": "2026-07-30T18:05:00.000Z",
+      "status": "Confirmed"
+    },
+    {
+      "id": "bk_005",
+      "userId": "usr_cust01",
+      "customerName": "Akshad Jaiswal",
+      "movieId": "mov_005",
+      "movieName": "Chhichhore",
+      "showTime": "2026-08-07 20:15",
+      "seats": [
+        "E5",
+        "E6"
+      ],
+      "ticketCount": 2,
+      "totalAmount": 520,
+      "bookingDate": "2026-07-31T10:00:00.000Z",
+      "status": "Confirmed"
+    },
+    {
+      "id": "bk_006",
+      "userId": "usr_cust02",
+      "customerName": "Dolly Sharma",
+      "movieId": "mov_006",
+      "movieName": "Zindagi Na Milegi Dobara",
+      "showTime": "2026-08-07 18:00",
+      "seats": [
+        "F8"
+      ],
+      "ticketCount": 1,
+      "totalAmount": 350,
+      "bookingDate": "2026-07-31T11:30:00.000Z",
+      "status": "Cancelled"
+    },
+    {
+      "id": "bk_007",
+      "userId": "usr_cust03",
+      "customerName": "Khushi jain",
+      "movieId": "mov_007",
+      "movieName": "Bajrangi Bhaijaan",
+      "showTime": "2026-08-08 14:30",
+      "seats": [
+        "G2",
+        "G3"
+      ],
+      "ticketCount": 2,
+      "totalAmount": 600,
+      "bookingDate": "2026-08-01T08:15:00.000Z",
+      "status": "Confirmed"
+    },
+    {
+      "id": "bk_008",
+      "userId": "usr_cust04",
+      "customerName": "Sarah Williams",
+      "movieId": "mov_008",
+      "movieName": "Drishyam 2",
+      "showTime": "2026-08-08 22:00",
+      "seats": [
+        "H9",
+        "H10"
+      ],
+      "ticketCount": 2,
+      "totalAmount": 580,
+      "bookingDate": "2026-08-01T09:40:00.000Z",
+      "status": "Confirmed"
+    },
+    {
+      "id": "bk_009",
+      "userId": "usr_cust01",
+      "customerName": "Akshad Jaiswal",
+      "movieId": "mov_009",
+      "movieName": "Shershaah",
+      "showTime": "2026-08-09 19:30",
+      "seats": [
+        "A1"
+      ],
+      "ticketCount": 1,
+      "totalAmount": 270,
+      "bookingDate": "2026-08-01T11:00:00.000Z",
+      "status": "Confirmed"
+    },
+    {
+      "id": "bk_010",
+      "userId": "usr_cust02",
+      "customerName": "Dolly Sharma",
+      "movieId": "mov_010",
+      "movieName": "Bhool Bhulaiyaa 2",
+      "showTime": "2026-08-09 16:00",
+      "seats": [
+        "B1",
+        "B2"
+      ],
+      "ticketCount": 2,
+      "totalAmount": 560,
+      "bookingDate": "2026-08-01T12:30:00.000Z",
+      "status": "Confirmed"
+    }
+  ]
+}
