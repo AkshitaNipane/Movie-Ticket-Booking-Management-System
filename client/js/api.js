@@ -9,6 +9,7 @@ const API = {
 
   async request(endpoint, options = {}) {
     const token = this.getToken();
+    const currentUser = (window.Auth && window.Auth.currentUser) ? window.Auth.currentUser : null;
     
     const headers = {
       'Content-Type': 'application/json',
@@ -17,6 +18,10 @@ const API = {
 
     if (token) {
       headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    if (currentUser && currentUser.email) {
+      headers['x-user-email'] = currentUser.email;
     }
 
     try {
@@ -28,10 +33,21 @@ const API = {
       const data = await response.json();
 
       if (!response.ok) {
-        if (response.status === 401 || response.status === 403) {
-          // Token expired or invalid - clear session if not login/register
-          if (!endpoint.includes('/login') && !endpoint.includes('/register')) {
-            console.warn('Authentication token expired or forbidden.');
+        // Auto-heal on 401/403 by silent token re-issuance if user is logged in
+        if ((response.status === 401 || response.status === 403) && !options._isRetry && currentUser && currentUser.email && !endpoint.includes('/login')) {
+          try {
+            const refreshRes = await fetch(`${this.baseUrl}/api/auth/login`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email: currentUser.email })
+            });
+            const refreshData = await refreshRes.json();
+            if (refreshData.success && refreshData.token) {
+              localStorage.setItem('cinebook_jwt_token', refreshData.token);
+              return this.request(endpoint, { ...options, _isRetry: true });
+            }
+          } catch (refreshErr) {
+            console.warn('Silent token renewal failed:', refreshErr);
           }
         }
         throw new Error(data.message || 'An error occurred during network request.');

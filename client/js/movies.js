@@ -480,11 +480,13 @@ const Movies = {
         payBtn.innerHTML = '<i class="ri-loader-4-line ri-spin"></i> Processing Payment...';
       }
 
+      const userEmail = (Auth.currentUser && Auth.currentUser.email) ? Auth.currentUser.email : 'akshitanipane26@gmail.com';
       const payload = {
         movieId: this.selectedMovieForBooking.id,
         seats: this.selectedSeats,
         paymentMethod: paymentMethodName,
-        paymentDetails: paymentDetails
+        paymentDetails: paymentDetails,
+        userEmail: userEmail
       };
 
       const res = await API.post('/api/bookings', payload);

@@ -74,7 +74,7 @@
       "showDate": "2026-08-05",
       "showTime": "18:30",
       "screenNumber": "Screen 1",
-      "availableSeats": 105,
+      "availableSeats": 102,
       "ticketPrice": 250,
       "posterUrl": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=600&q=80"
     },
@@ -197,6 +197,66 @@
     }
   ],
   "bookings": [
+    {
+      "id": "bk_538210",
+      "userId": "usr_1785577417215",
+      "customerName": "AKSHITA NIPANE",
+      "customerEmail": "akshitanipane26@gmail.com",
+      "movieId": "mov_001",
+      "movieName": "Taare Zameen Par",
+      "screenNumber": "Screen 1",
+      "showTime": "2026-08-05 18:30",
+      "seats": [
+        "B3"
+      ],
+      "ticketCount": 1,
+      "totalAmount": 250,
+      "paymentMethod": "Email Pay",
+      "paymentStatus": "Paid",
+      "transactionId": "TXN_18538210",
+      "bookingDate": "2026-10-12T15:22:18.210Z",
+      "status": "Confirmed"
+    },
+    {
+      "id": "bk_538206",
+      "userId": "usr_1785577417215",
+      "customerName": "AKSHITA NIPANE",
+      "customerEmail": "akshitanipane26@gmail.com",
+      "movieId": "mov_001",
+      "movieName": "Taare Zameen Par",
+      "screenNumber": "Screen 1",
+      "showTime": "2026-08-05 18:30",
+      "seats": [
+        "B2"
+      ],
+      "ticketCount": 1,
+      "totalAmount": 250,
+      "paymentMethod": "Email Pay",
+      "paymentStatus": "Paid",
+      "transactionId": "TXN_18538206",
+      "bookingDate": "2026-10-12T15:22:18.206Z",
+      "status": "Confirmed"
+    },
+    {
+      "id": "bk_538196",
+      "userId": "usr_admin01",
+      "customerName": "AKSHITA NIPANE",
+      "customerEmail": "akshitanipane755@gmail.com",
+      "movieId": "mov_001",
+      "movieName": "Taare Zameen Par",
+      "screenNumber": "Screen 1",
+      "showTime": "2026-08-05 18:30",
+      "seats": [
+        "B1"
+      ],
+      "ticketCount": 1,
+      "totalAmount": 250,
+      "paymentMethod": "Email Pay",
+      "paymentStatus": "Paid",
+      "transactionId": "TXN_18538196",
+      "bookingDate": "2026-10-12T15:22:18.196Z",
+      "status": "Confirmed"
+    },
     {
       "id": "bk_593484",
       "userId": "usr_cust01",
